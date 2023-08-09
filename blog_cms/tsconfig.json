@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "Node",
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ]
+}

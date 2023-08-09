@@ -1,0 +1,57 @@
+#app {
+
+    .el-menu-item,
+    .el-sub-menu__title {
+        &:hover {
+            background-color: $menuHover !important;
+        }
+    }
+
+
+
+    .el-sub-menu .el-menu-item,
+    .nest-menu .el-sub-menu__title {
+        background-color: $subMenuBg !important;
+
+        &:hover {
+            background-color: $subMenuHover !important;
+        }
+    }
+
+    .svg-icon {
+        margin-right: 16px;
+    }
+
+    .sub_icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .submenu_title_noDropdown {
+
+        .el-menu-item {
+            padding: 0;
+            position: relative;
+
+            .svg-icon {
+                flex-shrink: 0;
+            }
+        }
+
+        .el-sub-menu__title {
+            i {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+
+            .el-sub-menu__icon-arrow {
+                display: none;
+            }
+        }
+        
+    }
+
+}
