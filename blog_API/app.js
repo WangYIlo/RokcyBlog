@@ -32,10 +32,11 @@ const categoryRouter=require('./router/category')
 const tagRouter=require('./router/tag')
 const articleRouter=require('./router/article')
 const aboutMeRouter=require('./router/aboutme')
+const homeRouter=require('./router/home')
 
 
 app.use('/api',userRouter)
-app.use('/admin',userInfoRouter,categoryRouter,tagRouter,articleRouter,aboutMeRouter)
+app.use('/admin',userInfoRouter,categoryRouter,tagRouter,articleRouter,aboutMeRouter,homeRouter)
 // app.use('/admin',categoryRouter,tagRouter)
 // app.use('/admin',tagRouter)
 
