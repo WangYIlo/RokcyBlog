@@ -47,7 +47,7 @@ onMounted(async () => {
 .box-card {
     .card-header {
         text-align: center;
-        font-weight: 900;
+        font-weight: 700;
         .user_image {
             width: 260px;
             height: 260px;
