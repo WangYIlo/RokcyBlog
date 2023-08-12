@@ -17,7 +17,6 @@ import router from './router'
 
 import pinia from './stores'
 
-import '@wangeditor/editor/dist/css/style.css' // 引入 wangeditor css
 import 'mavon-editor/dist/css/index.css' 
 import mavonEditor from 'mavon-editor'
 

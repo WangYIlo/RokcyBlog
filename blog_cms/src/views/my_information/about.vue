@@ -4,14 +4,7 @@
             <el-input style="width: 50%;" v-model="aboutForm.title"></el-input>
         </el-form-item>
         <el-form-item label="正文" required ref="text">
-            <div style="border: 1px solid #ccc;">
-                <Toolbar style="border-bottom: 1px solid #ccc" :editor="editorRef" :defaultConfig="toolbarConfig"
-                    :mode="mode" />
-                <div class="editorContainer">
-                    <Editor  class='editor'   v-model="aboutForm.content"
-                        :defaultConfig="editorConfig" :mode="mode" @onCreated="handleCreated" @onChange="onChange" />
-                </div>
-            </div>
+            <mavon-editor  v-model="aboutForm.content"   style="width: 100%; height: 600px;"/>
         </el-form-item>
         <el-form-item>
             <el-button type="primary" @click="updateAbout">保存</el-button>
@@ -20,7 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import { Editor, Toolbar} from '@wangeditor/editor-for-vue'
 import { ref, shallowRef, onBeforeUnmount, onMounted } from 'vue'
 import { reqGetAbout, requpdateAbout } from '@/api/aboutMe';
 import { ElMessage } from 'element-plus';

@@ -5,7 +5,9 @@
                 <span>{{ about.title }}</span>
             </div>
         </template>
-        <div v-html="about.content" id="editor-content-view" class="editor-content-view"></div>
+        <div>
+            <mavon-editor class="editor" :ishljs="false" :toolbarsFlag="false" :subfield="false" defaultOpen="preview"  v-model="about.content"></mavon-editor>
+        </div>
     </el-card>
 </template>
 
