@@ -17,11 +17,15 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 //pinia
 import pinia from './stores'
 
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
 const app = createApp(App)
 
 app.use(GlobalComponents)
 app.use(router)
 app.use(pinia)
+app.use(mavonEditor)
 
 //element 国际化
 app.use(ElementPlus, {

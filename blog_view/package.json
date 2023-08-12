@@ -15,6 +15,7 @@
     "@wangeditor/editor": "^5.1.23",
     "axios": "^1.4.0",
     "element-plus": "^2.3.8",
+    "mavon-editor": "^3.0.1",
     "pinia": "^2.1.4",
     "pinia-plugin-persistedstate": "^3.2.0",
     "sass": "^1.64.1",

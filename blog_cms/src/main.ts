@@ -18,6 +18,8 @@ import router from './router'
 import pinia from './stores'
 
 import '@wangeditor/editor/dist/css/style.css' // 引入 wangeditor css
+import 'mavon-editor/dist/css/index.css' 
+import mavonEditor from 'mavon-editor'
 
 const app = createApp(App)
 
@@ -29,5 +31,6 @@ app.use(ElementPlus, {
 app.use(GlobalComponents)
 app.use(pinia)
 app.use(router)
+app.use(mavonEditor)
 
 app.mount('#app')

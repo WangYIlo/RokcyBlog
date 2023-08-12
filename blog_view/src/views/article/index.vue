@@ -14,7 +14,8 @@
                 <div class="introduce">
                     {{ article.introduce }}
                 </div>
-                <div class="content" v-html="article.content">
+                <div class="content" >
+                    <mavon-editor class="editor" :ishljs="false" :toolbarsFlag="false" :subfield="false" defaultOpen="preview"  v-model="article.content"></mavon-editor>
                 </div>
             </div>
         </el-card>
@@ -25,7 +26,6 @@
 import { onMounted, ref, watch } from 'vue';
 import { reqGetArticleById } from '@/api/article'
 
-const baseURL = 'http://127.0.0.1:3007'
 const props = defineProps(['id'])
 const article = ref({
     category_id: '',
@@ -89,6 +89,9 @@ onMounted(async () => {
             font-size: 15px;
             color: grey;
             border-left: 5px solid grey;
+        }
+        .editor {
+            z-index: 1 !important;
         }
     }
 }
