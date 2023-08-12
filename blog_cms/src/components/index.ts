@@ -1,6 +1,6 @@
 //自定义插件用于全局注册
 import SvgIcon from '@/components/SvgIcon/index.vue'
-import SidebarItem from '@/layout/Sidebar/sidebarItem.vue'
+import SidebarItem from '@/layout/Sidebar/SidebarItem.vue'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import Pagniation from '@/components/Pagniation/index.vue'
 
