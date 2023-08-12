@@ -64,6 +64,7 @@ import { reqAddArticle, reqGetArticleById, reqEditArticleById, reqGetPulish } fr
 import { reqGetTag } from '@/api/tag/index';
 import type { ArticleForm } from '@/api/article/type';
 import { useRouter } from 'vue-router';
+import setting from '@/setting'
 
 const $router = useRouter()
 
@@ -71,7 +72,7 @@ const props = defineProps(({
     id: String
 }))
 
-const baseURL = 'http://127.0.0.1:3007'
+const baseURL = setting.baseURL_LocalHost
 const pubish = ref([{
     id: '',
     name: ''

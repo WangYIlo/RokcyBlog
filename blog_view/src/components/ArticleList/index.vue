@@ -34,6 +34,7 @@
 import { reqGetArticle } from '@/api/article'
 import { onMounted, ref } from 'vue';
 import { useRouter,useRoute } from 'vue-router'
+import { setting } from '@/setting';
 
 const props = defineProps(['id'])
 
@@ -41,7 +42,7 @@ const page = ref(1)
 const pageSize = ref(5)
 const total = ref()
 
-const baseURL = 'http://127.0.0.1:3007'
+const baseURL = setting.baseURL_LocalHost
 
 const $router = useRouter()
 const $route = useRoute()

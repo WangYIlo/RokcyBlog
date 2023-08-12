@@ -36,10 +36,11 @@ import { reqGetRandomArticle,reqGetArticle } from '@/api/article'
 import { reqGetTag } from '@/api/tag'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router';
+import { setting } from '@/setting';
 
 
 const $router=useRouter()
-const baseURL = 'http://127.0.0.1:3007'
+const baseURL = setting.baseURL_LocalHost
 
 const articleList = ref([{
     created_time: "",

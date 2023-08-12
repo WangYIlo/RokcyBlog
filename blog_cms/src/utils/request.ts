@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import {useUserStore} from '../stores/modules/user'
+import setting from '@/setting';
 
 let request=axios.create({
-    baseURL: 'http://127.0.0.1:3007',
+    baseURL: setting.baseURL_LocalHost,
     timeout: 5000,
 });
 
