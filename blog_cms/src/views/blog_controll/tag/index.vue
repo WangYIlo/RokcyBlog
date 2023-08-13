@@ -139,7 +139,9 @@ const addBtn=()=>{
 const updateCategory = async (row: any) => {
     dialogTitle.value = '编辑标签'
     dialogVisible.value = true
+
     tagForm.value.name = row.name
+    tagForm.value.color=row.color
     tagForm.value.id = row.id
 }
 

@@ -32,7 +32,7 @@
             </el-form-item>
         </el-row>
         <el-form-item label="文章正文" required>
-            <mavon-editor  v-model="ariticleForm.content"   style="width: 100%; height: 600px;"/>
+            <mavon-editor  ref="$vm" v-model="ariticleForm.content" style="width: 100%; height: 600px;"/>
         </el-form-item>
         <el-form-item label="文章封面" required>
             <el-upload class="avatar-uploader" ref="imageRef" accept="image/*" :auto-upload="false" :on-change="onChange"
@@ -51,8 +51,8 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted } from 'vue'
-import { ElMessage, tagEmits } from 'element-plus';
+import {ref, onMounted} from 'vue'
+import { ElMessage } from 'element-plus';
 import { reqGetAllCatrgories } from '@/api/category';
 import { reqAddArticle, reqGetArticleById, reqEditArticleById, reqGetPulish } from '@/api/article/index'
 import { reqGetTag } from '@/api/tag/index';
@@ -61,6 +61,7 @@ import { useRouter } from 'vue-router';
 import setting from '@/setting'
 
 const $router = useRouter()
+const $vm=ref()
 
 const props = defineProps(({
     id: String
@@ -117,8 +118,6 @@ const tags = ref([
         color:''
     }
 ])
-
-
 
 const imageUrl = ref('')
 const imageRef = ref()

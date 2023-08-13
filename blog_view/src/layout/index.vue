@@ -34,11 +34,16 @@ onMounted( async ()=>{
 
 </script>
 
+<style>
+body {
+    background-color: rgba(106, 99, 99,0.1);
+}
+</style>
+
 <style scoped>
 .layout_container {
     width: 100%;
     height: 2000px;
-    background-color: rgba(106, 99, 99,0.1);
     .layout_topbar {
         width: 100%;
         height: 60px;

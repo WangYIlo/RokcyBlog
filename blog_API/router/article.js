@@ -32,4 +32,7 @@ router.get('/getArticleRandom',article_handler.getRandomArticle)
 //获取全部公开文章
 router.get('/getArticlePublish',article_handler.getAllPublishArticle)
 
+
+
+
 module.exports=router

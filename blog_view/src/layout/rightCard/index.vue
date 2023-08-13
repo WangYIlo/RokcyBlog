@@ -95,20 +95,25 @@ onMounted(async () => {
         .article-item {
             cursor: pointer;
             flex: 1; 
+            margin-bottom: 5px ;
             .image-container {
             position: relative;
+            overflow: hidden;
             img {
                 width: 100%;
                 height: 100%;
             }
 
             .text-overlay {
+                width: 100%;
+                background:linear-gradient(to bottom,white,black);
                 position: absolute;
                 bottom: 0;
                 color: white;
-                padding: 10px;
+                padding: 5px;
                 font-size: 12px;
                 max-width: 100%;
+                opacity: 0.8;
 
                 .introduce {
                     overflow: hidden;
@@ -123,6 +128,7 @@ onMounted(async () => {
 
     .tags {
         color: white !important;
+        margin-bottom: 5px;
     }
 }
 

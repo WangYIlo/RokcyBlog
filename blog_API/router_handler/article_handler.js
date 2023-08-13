@@ -71,7 +71,7 @@ exports.updateArticle = async (req, res) => {
     }
 }
 
-//删除现有文章--id(未完成)
+//删除现有文章--id
 exports.deleteArticle = async (req, res) => {
     try {
         const sql = `select picture from article where id=?`
