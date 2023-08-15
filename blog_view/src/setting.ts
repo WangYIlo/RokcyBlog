@@ -5,5 +5,6 @@ export const setting={
 	bg3: 'https://cdn.naccl.top/blog/img/bg3.jpg',
 	bg4:'https://pic4.zhimg.com/v2-5523ed93593ee4c7fd97b972d0af92d3_r.jpg',
 	// http://121.43.120.119:3009   
-	baseURL_LocalHost:'http://127.0.0.1:3007'
+	baseURL_LocalHost:'http://127.0.0.1:3007',
+	leftSayings:'如今奖杯就在眼前，我必须考虑这会不会是我此生仅有的机会'
 }

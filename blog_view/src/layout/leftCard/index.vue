@@ -24,20 +24,27 @@
                     </div>
                 </div>
             </template>
-            游龙当归海
+             <div class="sayings" ref="sayings"></div>
         </el-card>
     </div>
 </template>
 
 <script setup lang="ts">
 import { useUserStore } from '@/stores/moudles/user'
-import { onMounted } from 'vue';
+import { onMounted,ref } from 'vue';
+import {setting} from '@/setting'
+import animateText from '@/utils/animateText'
 
+const sayings=ref()
 const userStore = useUserStore()
 
 onMounted(async () => {
     await userStore.getUserinfo()
+    //动态显示文字
+    animateText(sayings.value,setting.leftSayings,200,200)
 })
+
+
 
 </script>
 
@@ -58,5 +65,26 @@ onMounted(async () => {
         }
     }
 
+    .sayings{
+        font-weight: 700;
+        font-size: 16px;
+        animation: text-animation 3s linear infinite;
+    }
+}
+
+@keyframes text-animation{
+  0% {
+    color: red;
+  }
+  50% {
+    color: blue;
+  }
+  75% {
+    color: yellow;
+  }
+  100% {
+    color: green;
+  }
+    
 }
 </style>
