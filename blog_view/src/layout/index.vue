@@ -23,14 +23,7 @@ import Navbar from './Navbar/index.vue'
 import LeftCard from './leftCard/index.vue'
 import RightCard from './rightCard/index.vue'
 import BgView from '@/layout/BgView/index.vue'
-import {useUserStore} from '@/stores/moudles/user'
-import { onMounted } from 'vue';
 
-const userStore=useUserStore()
-
-onMounted( async ()=>{
-    await userStore.userLogin()
-})
 
 </script>
 
