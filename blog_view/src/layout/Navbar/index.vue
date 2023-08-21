@@ -25,20 +25,29 @@
             </el-menu-item>
         </el-menu>
         <div class="input">
-            <el-input placeholder="Search....">
+            <el-input placeholder="Search...." v-model.trim="searchTitle" @focus="hiddenSearchList=false"  @blur="hiddenSearchList=true" @input="searchArticle">
                 <template #suffix>
                     <el-button icon="search"></el-button>
                 </template>
             </el-input>
+            <ul class="searchList" v-if="!hiddenSearchList">
+                <li class="searchItem" v-for="item in searchList" :key="item.id"    @mousedown="goSearch(item.id)">
+                    {{ item.title }}
+                </li>
+            </ul>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { reqGetAllCatrgories } from '@/api/category';
+import { reqGetSearchArticle } from '@/api/article';
 import { onMounted, ref, onUnmounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute,useRouter } from 'vue-router';
+import { debounce } from '@/utils/debounce';
+
 const $route = useRoute()
+const $router = useRouter()
 const categories = ref([{
     id: '',
     category_name: '',
@@ -46,6 +55,14 @@ const categories = ref([{
 }])
 const hiddenBar = ref(true)
 const scollEvent = ref(false);
+
+const hiddenSearchList=ref(true)
+const searchTitle=ref('')
+const searchList=ref([{
+    id:'',
+    title:''
+}])
+
 onMounted(async () => {
     if(scollEvent.value){
         window.removeEventListener('scroll', handleScroll);
@@ -73,6 +90,18 @@ const handleScroll = () => {
         }
     }
 }
+//搜索框
+const searchArticle = debounce(async (value: string) => {
+  //防止值为空，进而搜索全部文章  
+  if(value=='') return false
+  const result = await reqGetSearchArticle(value);
+  searchList.value = result.data;
+}, 500);
+
+const goSearch=(id:number|string)=>{
+    $router.push(`/article/${id}`)
+}
+
 </script>
 
 <style lang="scss">
@@ -109,7 +138,25 @@ const handleScroll = () => {
     }
 
     .input {
+        position: relative;
         flex: 5;
+        .searchList{
+             position: absolute;
+             width: 100%;
+             margin-top:5px;
+             background-color: white;
+
+             .searchItem{
+                font-size: 14px;
+                padding: 1px 0 1px 11px;
+                height: 32px;
+                line-height: 32px;
+                &:hover {
+                    cursor: pointer;
+                    background-color:rgba($color: grey, $alpha: 0.4)
+                }
+             }
+        }
     }
 }
 

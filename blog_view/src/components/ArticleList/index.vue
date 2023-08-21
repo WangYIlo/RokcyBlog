@@ -74,7 +74,7 @@ const getArticleList = async () => {
          res = await reqGetArticle(page.value, pageSize.value,undefined,tagId)
     }else{
         const categoryId=props.id
-         res = await reqGetArticle(page.value, pageSize.value, categoryId)
+        res = await reqGetArticle(page.value, pageSize.value, categoryId)
     }
     articleList.value = res.data.data
     total.value = res.data.total

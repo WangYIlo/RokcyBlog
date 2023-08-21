@@ -4,7 +4,8 @@ enum API {
     RANDOM_ARTICLE='admin/getArticleRandom',
     GET_ARTICLE_URL='admin/getArticle',
     GET_ARTICLEBYID_URL='admin/article',
-    GET_ARTICLE_PUBLISHED='admin/getArticlePublish'
+    GET_ARTICLE_PUBLISHED='admin/getArticlePublish',
+    GET_SEARCHARTICLE='admin/searchArticle'
 }
 
 
@@ -46,3 +47,12 @@ export const reqGetArticlePublished=()=>{
     })
 }
 
+export const reqGetSearchArticle=(title:string)=>{
+    return request({
+        method:'POST',
+        url:API.GET_SEARCHARTICLE,
+        data:{
+            title
+        }
+    })
+}

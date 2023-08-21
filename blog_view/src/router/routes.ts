@@ -39,6 +39,11 @@ export const constantRoute=[
                 path:'/aboutMe',
                 name:'about',
                 component:()=>import('@/views/aboutme/index.vue')
+            },
+            {
+                path:'/searchArtile',
+                name:'search',
+                component:()=>import('@/views/search/index.vue')
             }
         ]
     },
