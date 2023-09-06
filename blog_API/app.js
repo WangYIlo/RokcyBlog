@@ -38,8 +38,7 @@ const homeRouter=require('./router/home')
 
 app.use('/api',userRouter)
 app.use('/admin',userInfoRouter,categoryRouter,tagRouter,articleRouter,aboutMeRouter,homeRouter)
-// app.use('/admin',categoryRouter,tagRouter)
-// app.use('/admin',tagRouter)
+
 
 
 app.listen(3007, () => {

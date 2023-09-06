@@ -50,6 +50,7 @@ exports.login = async (req, res) => {
         })
 
     } catch (error) {
+        console.log(error);
         res.status(500).send('服务器错误')
     }
 }

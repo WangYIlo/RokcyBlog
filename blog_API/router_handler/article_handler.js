@@ -114,7 +114,6 @@ exports.getArticleByid = async (req, res) => {
         WHERE article_tag.article_id = ?`
         const result = await query(sql, id)
         const tagArray = await query(tagSql, id)
-        console.log(result[0], tagArray);
         if (!result[0]) return res.status(400).send('获取失败，该文章不存在')
 
         const data = result.map((obj) => {
@@ -150,19 +149,23 @@ exports.getArticleByPage = async (req, res) => {
         //获取文章
         let sql1 =
             `SELECT
-            article.*,
-            categories.category_name AS category_name,
-            (
-                SELECT GROUP_CONCAT(
-                    JSON_OBJECT('id', tag.id, 'name', tag.name, 'color', tag.color)
-                )
-                FROM article_tag
-                INNER JOIN tag ON article_tag.tag_id = tag.id
-                WHERE article_tag.article_id = article.id
-            ) AS tags
-        FROM
-            article
-        LEFT JOIN categories ON article.category_id = categories.id`
+    article.*,
+    categories.category_name AS category_name,
+    (
+        SELECT GROUP_CONCAT(
+            CONCAT('{', 
+                CONCAT('"id":', tag.id,
+                CONCAT(',"name":"', tag.name,
+                CONCAT('","color":"', tag.color, '"}')))
+            )
+        )
+        FROM article_tag
+        INNER JOIN tag ON article_tag.tag_id = tag.id
+        WHERE article_tag.article_id = article.id
+    ) AS tags
+FROM
+    article
+LEFT JOIN categories ON article.category_id = categories.id`
         let params = [pageSize, offset]
         let countparams = []
         //have id
@@ -217,8 +220,6 @@ exports.getArticleByPage = async (req, res) => {
         const countResult = await query(countSql, countparams);
         const total = countResult[0].total;
 
-
-
         res.status(200).send({
             message: '获取数据成功',
             data,
@@ -261,26 +262,41 @@ exports.getRandomArticle = async (req, res) => {
 
 //获取公开后的全部文章用于归档
 exports.getAllPublishArticle = async (req, res) => {
-    const sql = `select id,created_time ,update_time,title from article where is_published=1`
 
-    const result = await query(sql)
+    try {
+        const sql = `select id,created_time ,update_time,title from article where is_published=1`
 
-    const data = result.map((obj) => {
-        let created_time = obj.created_time
-        let update_time = obj.update_time
-        created_time = moment(created_time).format('YYYY-MM-DD ')
-        update_time = moment(update_time).format('YYYY-MM-DD ')
-        return { ...obj, created_time, update_time }
-    })
+        const result = await query(sql)
 
-    let countSql = `SELECT COUNT(*) AS total FROM (${sql}) AS countTable`;
+        const data = result.map((obj) => {
+            let created_time = obj.created_time
+            let update_time = obj.update_time
+            created_time = moment(created_time).format('YYYY-MM-DD ')
+            update_time = moment(update_time).format('YYYY-MM-DD ')
+            return { ...obj, created_time, update_time }
+        })
 
-    const count = await query(countSql)
+        let countSql = `SELECT COUNT(*) AS total FROM (${sql}) AS countTable`;
 
-    res.status(200).send({
-        data,
-        total:count[0].total
-    })
+        const count = await query(countSql)
+
+        res.status(200).send({
+            data,
+            total: count[0].total
+        })
+    } catch (error) {
+        res.status(500).send('服务器错误')
+    }
+
 }
 
-
+//搜索文章
+exports.searcchArticle = async (req, res) => {
+    try {
+        const sql = `SELECT title,id FROM article WHERE title LIKE ? and is_published=1`
+        const result = await query(sql, [`%${req.body.title}%`])
+        res.status(200).send(result)
+    } catch (error) {
+        res.status(500).send('服务器错误')
+    }
+}
