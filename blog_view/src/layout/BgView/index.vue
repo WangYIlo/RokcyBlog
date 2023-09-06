@@ -93,4 +93,13 @@ const goDown=()=>{
         }
     }
 }
+
+// 移动端适配
+@media screen and (max-width: 844px){
+    .bg {
+        display: none;
+    }
+}
+
+
 </style>

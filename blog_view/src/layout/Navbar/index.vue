@@ -81,12 +81,14 @@ onUnmounted(() => {
 })
 //处理tabbar颜色切换问题
 const handleScroll = () => {
-    if ($route.name === 'home') { 
-        const pageY = window.pageYOffset
-        if (pageY >= 180) {
-            hiddenBar.value = false
-        } else {
-            hiddenBar.value = true
+    if (window.matchMedia("(min-width: 844px)").matches) { // 只在屏幕宽度大于等于 768px 时执行
+        if ($route.name === 'home') { 
+            const pageY = window.pageYOffset
+            if (pageY >= 180) {
+                hiddenBar.value = false
+            } else {
+                hiddenBar.value = true
+            }
         }
     }
 }
@@ -114,6 +116,8 @@ const goSearch=(id:number|string)=>{
     background-color: black !important;
 }
 </style>
+
+
 
 <style scoped lang='scss'>
 .navbar_container {
@@ -166,6 +170,22 @@ const goSearch=(id:number|string)=>{
     .el-menu-navbar {
         background-color: transparent;
         border-color: transparent;
+    }
+}
+
+// 媒体查询
+@media screen and (max-width: 844px) {
+    .navbar_container {
+        background-color: black;
+        .title {
+            flex: 1.5;
+        }
+        .el-menu-navbar {
+            flex: 3;
+        }
+    }
+    .input {
+        display: none;
     }
 }
 </style>

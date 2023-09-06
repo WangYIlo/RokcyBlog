@@ -36,7 +36,6 @@ body {
 <style scoped>
 .layout_container {
     width: 100%;
-    height: 2000px;
     .layout_topbar {
         width: 100%;
         height: 60px;
@@ -55,6 +54,15 @@ body {
         .layout_rightCard {
             flex: 1;
         }
+    }
+}
+
+@media screen and (max-width: 844px){   
+    .layout_leftCard {
+        display: none;
+    }
+    .layout_rightCard{
+        display: none;
     }
 }
 </style>
