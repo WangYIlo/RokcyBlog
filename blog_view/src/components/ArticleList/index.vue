@@ -15,7 +15,7 @@
                 <div class="introduce">
                     {{ item.introduce }}
                 </div>
-                <img class="img" :src="baseURL + item.picture" alt="">
+                <img ref="img" class="img"  :data-src="baseURL+item.picture" alt="">
                 <el-button class="btn" round @click="getArticle(item.id)">阅读全文</el-button>
                 <div >
                     <el-button class="tags" @click="$router.push(`/tag/${tag.id}/${tag.name}`)"  v-for="tag in item.tags" :key="tag.id" style="margin-left: 5px;" :color="tag.color" size="small">{{tag.name}}</el-button>
@@ -46,6 +46,7 @@ const baseURL = setting.baseURL_LocalHost
 
 const $router = useRouter()
 const $route = useRoute()
+const img=ref()
 
 const articleList = ref([{
     category_id: '',
@@ -87,6 +88,8 @@ const getArticleList = async () => {
 
 onMounted(async () => {
     await getArticleList()
+    lazyLoad()
+    
 })
 //阅读全文回调
 const getArticle = async (id: number | string) => {
@@ -103,6 +106,27 @@ const handlePageSizeChange = async (newSize: any) => {
     pageSize.value = newSize
     getArticleList()
 }
+
+//图片懒加载
+const lazyLoad=()=>{
+    let images=document.querySelectorAll('img[data-src]')
+
+    const observer=new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+            if(entry.isIntersecting){
+                const image=entry.target
+                image.setAttribute('src',image.getAttribute('data-src') as string)
+                observer.unobserve(image)
+            }
+        })
+        
+    })
+
+    images.forEach(image=>{
+        observer.observe(image)
+    })
+}
+
 
 
 </script>
