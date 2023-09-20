@@ -110,7 +110,6 @@ const handlePageSizeChange = async (newSize: any) => {
 //图片懒加载
 const lazyLoad=()=>{
     let images=document.querySelectorAll('img[data-src]')
-
     const observer=new IntersectionObserver((entries)=>{
         entries.forEach(entry=>{
             if(entry.isIntersecting){
@@ -121,7 +120,6 @@ const lazyLoad=()=>{
         })
         
     })
-
     images.forEach(image=>{
         observer.observe(image)
     })
